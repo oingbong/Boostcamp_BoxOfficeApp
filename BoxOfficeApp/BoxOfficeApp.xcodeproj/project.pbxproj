@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		477CDDF321B80E8500C378E3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477CDDF221B80E8500C378E3 /* TableViewCell.swift */; };
+		477CDDF521B8100000C378E3 /* movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477CDDF421B8100000C378E3 /* movie.swift */; };
 		4784742221B7879A0066E39E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784742121B7879A0066E39E /* AppDelegate.swift */; };
 		4784742421B7879A0066E39E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784742321B7879A0066E39E /* TableViewController.swift */; };
 		4784742721B7879A0066E39E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4784742521B7879A0066E39E /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		477CDDF221B80E8500C378E3 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		477CDDF421B8100000C378E3 /* movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movie.swift; sourceTree = "<group>"; };
 		4784741E21B7879A0066E39E /* BoxOfficeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOfficeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4784742121B7879A0066E39E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4784742321B7879A0066E39E /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -101,8 +105,10 @@
 			children = (
 				4784742121B7879A0066E39E /* AppDelegate.swift */,
 				4784742321B7879A0066E39E /* TableViewController.swift */,
+				477CDDF221B80E8500C378E3 /* TableViewCell.swift */,
 				4784744F21B799FE0066E39E /* CollectionViewController.swift */,
 				4784742521B7879A0066E39E /* Main.storyboard */,
+				477CDDF421B8100000C378E3 /* movie.swift */,
 				4784742821B7879B0066E39E /* Assets.xcassets */,
 				4784742A21B7879B0066E39E /* LaunchScreen.storyboard */,
 				4784742D21B7879B0066E39E /* Info.plist */,
@@ -260,8 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4784745021B799FE0066E39E /* CollectionViewController.swift in Sources */,
+				477CDDF321B80E8500C378E3 /* TableViewCell.swift in Sources */,
 				4784742421B7879A0066E39E /* TableViewController.swift in Sources */,
 				4784742221B7879A0066E39E /* AppDelegate.swift in Sources */,
+				477CDDF521B8100000C378E3 /* movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
