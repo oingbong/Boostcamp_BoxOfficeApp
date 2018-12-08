@@ -10,9 +10,15 @@ import UIKit
 
 class TableViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
+    var movies: Movies?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableview.dataSource = self
+        configure()
+    }
+    
+    private func configure() {
         // 1. URL 객체 정의 - else 일 때 사용자에게 알람 (선택사항)
         guard let url = URL(string: "http://connect-boxoffice.run.goorm.io/movies?order_type=1") else { return }
         // 2. URLRequest 객체 정의 및 요청 내용
@@ -31,14 +37,29 @@ class TableViewController: UIViewController {
             do {
                 guard let responseData = data else { return }
                 let items = try JSONDecoder().decode(Movies.self, from: responseData)
-                print(items.data)
-                print(items.orderType)
+                self.movies = Movies(orderType: items.orderType, data: items.data)
+                DispatchQueue.main.async {
+                    self.tableview.reloadData()
+                }
             } catch {
                 print("error")
             }
         }
-
+        
         // 5. GET 전송
         task.resume()
+    }
+}
+
+extension TableViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movies?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableview.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
+        guard let items = movies?[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
+        cell.configure(from: items)
+        return cell
     }
 }
