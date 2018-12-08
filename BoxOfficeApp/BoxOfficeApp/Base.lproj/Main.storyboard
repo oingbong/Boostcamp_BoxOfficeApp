@@ -83,11 +83,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VYs-xl-ZKf">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="ic_settings" id="NKS-d0-AnO">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="VYs-xl-ZKf"/>
                     <connections>
                         <outlet property="tableview" destination="Ues-AY-DEQ" id="N2l-6Z-vac"/>
                     </connections>
@@ -208,11 +204,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="cz5-n5-awY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xOo-lG-ZQ6">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="ic_settings" id="eYb-nd-sEj">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="xOo-lG-ZQ6"/>
                     <connections>
                         <outlet property="collectionview" destination="GuK-tU-c7q" id="8ra-wh-yaB"/>
                     </connections>
@@ -244,7 +236,6 @@
     </scenes>
     <resources>
         <image name="ic_collection" width="25" height="25"/>
-        <image name="ic_settings" width="24" height="24"/>
         <image name="ic_table" width="24" height="24"/>
     </resources>
 </document>
