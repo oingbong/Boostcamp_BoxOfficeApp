@@ -1,14 +1,14 @@
 //
-//  TableViewCell.swift
+//  CollectionViewCell.swift
 //  BoxOfficeApp
 //
-//  Created by oingbong on 05/12/2018.
+//  Created by oingbong on 08/12/2018.
 //  Copyright © 2018 oingbong. All rights reserved.
 //
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var posterImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
