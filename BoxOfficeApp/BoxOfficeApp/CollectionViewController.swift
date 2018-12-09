@@ -15,40 +15,54 @@ class CollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionview.dataSource = self
-        configure()
-        // Do any additional setup after loading the view.
+        appendButtonItem()
+        configure(with: 0)
     }
     
-    private func configure() {
-        // 1. URL 객체 정의 - else 일 때 사용자에게 알람 (선택사항)
-        guard let url = URL(string: "http://connect-boxoffice.run.goorm.io/movies?order_type=1") else { return }
-        // 2. URLRequest 객체 정의 및 요청 내용
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        // 3. HTTP 메세지 헤더 설정
-        
-        // 4. URLSession 객체로 전송 및 응답값 처리 로직 작성
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            // 4-1. 서버가 응답이 없거나 통신이 실패했을 때
-            if let err = error {
-                print(err.localizedDescription)
-                return
-            }
-            
-            do {
-                guard let responseData = data else { return }
-                let items = try JSONDecoder().decode(Movies.self, from: responseData)
-                self.movies = Movies(orderType: items.orderType, data: items.data)
-                DispatchQueue.main.async {
-                    self.collectionview.reloadData()
-                }
-            } catch {
-                print("error")
+    private func appendButtonItem() {
+        guard let image = UIImage(named: "ic_settings") else { return }
+        let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sorted))
+        buttonItem.tintColor = UIColor.white
+        self.navigationItem.rightBarButtonItem = buttonItem
+    }
+    
+    private func configure(with element: Int) {
+        parse(orderType: element)
+        configureTitle(from: element)
+    }
+    
+    private func parse(orderType: Int) {
+        Parser.json(with: orderType) { (items) in
+            self.movies = Movies(orderType: items.orderType, data: items.data)
+            DispatchQueue.main.async {
+                self.collectionview.reloadData()
             }
         }
+    }
+    
+    private func configureTitle(from element: Int) {
+        guard let sort = SortName(rawValue: element) else { return }
+        self.navigationItem.title = sort.description
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
+    @objc private func sorted() {
+        let alert = UIAlertController(title: "정렬방식 선택", message: "영화를 어떤 순서로 정렬할까요?", preferredStyle: .actionSheet)
+        let reservationRate = UIAlertAction(title: "예매율", style: .default) { (_) in
+            self.configure(with: 0)
+        }
+        let curation = UIAlertAction(title: "큐레이션", style: .default) { (_) in
+            self.configure(with: 1)
+        }
+        let date = UIAlertAction(title: "개봉일", style: .default) { (_) in
+            self.configure(with: 2)
+        }
         
-        // 5. GET 전송
-        task.resume()
+        alert.addAction(reservationRate)
+        alert.addAction(curation)
+        alert.addAction(date)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

@@ -15,13 +15,20 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.dataSource = self
-        configure()
+        appendButtonItem()
+        configure(with: 0)
     }
     
-    private func configure() {
-        parse(orderType: 0)
-        configureTitle(from: 0)
-        appendButtonItem()
+    private func appendButtonItem() {
+        guard let image = UIImage(named: "ic_settings") else { return }
+        let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sorted))
+        buttonItem.tintColor = UIColor.white
+        self.navigationItem.rightBarButtonItem = buttonItem
+    }
+    
+    private func configure(with element: Int) {
+        parse(orderType: element)
+        configureTitle(from: element)
     }
     
     private func parse(orderType: Int) {
@@ -31,13 +38,6 @@ class TableViewController: UIViewController {
                 self.tableview.reloadData()
             }
         }
-    }
-    
-    private func appendButtonItem() {
-        guard let image = UIImage(named: "ic_settings") else { return }
-        let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sorted))
-        buttonItem.tintColor = UIColor.white
-        self.navigationItem.rightBarButtonItem = buttonItem
     }
     
     private func configureTitle(from element: Int) {
@@ -50,16 +50,13 @@ class TableViewController: UIViewController {
     @objc private func sorted() {
         let alert = UIAlertController(title: "정렬방식 선택", message: "영화를 어떤 순서로 정렬할까요?", preferredStyle: .actionSheet)
         let reservationRate = UIAlertAction(title: "예매율", style: .default) { (_) in
-            self.parse(orderType: 0)
-            self.configureTitle(from: 0)
+            self.configure(with: 0)
         }
         let curation = UIAlertAction(title: "큐레이션", style: .default) { (_) in
-            self.parse(orderType: 1)
-            self.configureTitle(from: 1)
+            self.configure(with: 1)
         }
         let date = UIAlertAction(title: "개봉일", style: .default) { (_) in
-            self.parse(orderType: 2)
-            self.configureTitle(from: 2)
+            self.configure(with: 2)
         }
         
         alert.addAction(reservationRate)
