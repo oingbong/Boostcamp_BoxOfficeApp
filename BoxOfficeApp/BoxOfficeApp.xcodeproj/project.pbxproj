@@ -20,6 +20,7 @@
 		47B88AEA21BB97AB00963FBC /* MovieEvaluation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B88AE921BB97AB00963FBC /* MovieEvaluation.swift */; };
 		47B88AEC21BB97D600963FBC /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B88AEB21BB97D600963FBC /* Movie.swift */; };
 		47B88AEE21BBA2B600963FBC /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B88AED21BBA2B600963FBC /* CollectionViewCell.swift */; };
+		47B88AF221BCE91C00963FBC /* SortName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B88AF121BCE91C00963FBC /* SortName.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		47B88AE921BB97AB00963FBC /* MovieEvaluation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEvaluation.swift; sourceTree = "<group>"; };
 		47B88AEB21BB97D600963FBC /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		47B88AED21BBA2B600963FBC /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		47B88AF121BCE91C00963FBC /* SortName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortName.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				47B88AE821BB979B00963FBC /* Model */,
 				4784742121B7879A0066E39E /* AppDelegate.swift */,
 				4784742321B7879A0066E39E /* TableViewController.swift */,
+				47B88AF121BCE91C00963FBC /* SortName.swift */,
 				477CDDF221B80E8500C378E3 /* TableViewCell.swift */,
 				47B88AED21BBA2B600963FBC /* CollectionViewCell.swift */,
 				4784744F21B799FE0066E39E /* CollectionViewController.swift */,
@@ -286,6 +289,7 @@
 				4784745021B799FE0066E39E /* CollectionViewController.swift in Sources */,
 				47B88AEE21BBA2B600963FBC /* CollectionViewCell.swift in Sources */,
 				477CDDF321B80E8500C378E3 /* TableViewCell.swift in Sources */,
+				47B88AF221BCE91C00963FBC /* SortName.swift in Sources */,
 				47B88AE721BB978F00963FBC /* Movies.swift in Sources */,
 				4784742421B7879A0066E39E /* TableViewController.swift in Sources */,
 				4784742221B7879A0066E39E /* AppDelegate.swift in Sources */,
