@@ -12,11 +12,32 @@ class TableViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     var movies: Movies?
     
+    /*
+     정렬기준 데이터 공유에 대한 설명
+     1. 둘다 nil : 처음에만 발생하는 상황이므로 viewDidLoad 에서 디폴트값 0 으로 처리
+     2. 둘다 있거나
+     1) 동일하면 데이터 유지 : nothing
+     2) 다르면 컬렉션뷰 따라가기 : 세팅 및 데이터 호출
+     */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.dataSource = self
         appendButtonItem()
-        configure(with: 0)
+        configure(with: 0) // 1
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        guard let tabBar = self.tabBarController?.viewControllers else { return }
+        guard let naviBar = tabBar[1] as? UINavigationController else { return }
+        guard let collectionView = naviBar.viewControllers.first as? CollectionViewController else { return }
+        // 2
+        if let orderType = self.movies?.orderType,
+            let anotherOrderType = collectionView.movies?.orderType,
+            orderType != anotherOrderType {
+            self.movies?.orderType = anotherOrderType
+            configure(with: anotherOrderType)
+        }
     }
     
     private func appendButtonItem() {

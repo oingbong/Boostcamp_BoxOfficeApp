@@ -12,11 +12,36 @@ class CollectionViewController: UIViewController {
     @IBOutlet weak var collectionview: UICollectionView!
     var movies: Movies?
     
+    /*
+     정렬기준 데이터 공유에 대한 설명
+     1. 컬렉션뷰의 orderType nil : 테이블뷰 따라가기
+     2. 둘다 있거나
+     1) 동일하면 데이터 유지 : nothing
+     2) 다르면 테이블뷰 따라가기 : 세팅 및 데이터 호출
+     */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionview.dataSource = self
         appendButtonItem()
-        configure(with: 0)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        guard let tabBar = self.tabBarController?.viewControllers else { return }
+        guard let naviBar = tabBar[0] as? UINavigationController else { return }
+        guard let tableView = naviBar.viewControllers.first as? TableViewController else { return }
+        
+        if let orderType = self.movies?.orderType,
+            let anotherOrderType = tableView.movies?.orderType,
+            orderType != anotherOrderType {
+            // 2
+            self.movies?.orderType = anotherOrderType
+            configure(with: anotherOrderType)
+        } else if let anotherOrderType = tableView.movies?.orderType {
+            // 1
+            self.movies?.orderType = anotherOrderType
+            configure(with: anotherOrderType)
+        }
     }
     
     private func appendButtonItem() {
