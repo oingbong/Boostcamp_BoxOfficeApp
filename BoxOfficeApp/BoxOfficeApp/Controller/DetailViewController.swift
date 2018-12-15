@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,6 +46,11 @@ extension DetailViewController: UITableViewDataSource {
         if let synopsisCell = tableView.dequeueReusableCell(withIdentifier: "SynopsisCell", for: indexPath) as? SynopsisCell, indexPath.row == 1 {
             synopsisCell.configure(from: movie)
             return synopsisCell
+        }
+        
+        if let peopleCell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as? PeopleCell, indexPath.row == 2 {
+            peopleCell.configure(from: movie)
+            return peopleCell
         }
         
         return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))
