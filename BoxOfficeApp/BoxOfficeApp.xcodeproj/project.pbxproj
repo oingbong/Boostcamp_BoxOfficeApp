@@ -12,6 +12,7 @@
 		4705174721C4C6D80070C5B4 /* SynopsisCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705174621C4C6D80070C5B4 /* SynopsisCell.swift */; };
 		4705174921C4C6E10070C5B4 /* PeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705174821C4C6E10070C5B4 /* PeopleCell.swift */; };
 		4705174B21C4C6ED0070C5B4 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705174A21C4C6ED0070C5B4 /* CommentCell.swift */; };
+		4705175321C50CAD0070C5B4 /* MovieEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705175221C50CAD0070C5B4 /* MovieEvaluations.swift */; };
 		477CDDF321B80E8500C378E3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477CDDF221B80E8500C378E3 /* TableViewCell.swift */; };
 		4784742221B7879A0066E39E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784742121B7879A0066E39E /* AppDelegate.swift */; };
 		4784742421B7879A0066E39E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784742321B7879A0066E39E /* TableViewController.swift */; };
@@ -52,6 +53,7 @@
 		4705174621C4C6D80070C5B4 /* SynopsisCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynopsisCell.swift; sourceTree = "<group>"; };
 		4705174821C4C6E10070C5B4 /* PeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
 		4705174A21C4C6ED0070C5B4 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		4705175221C50CAD0070C5B4 /* MovieEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEvaluations.swift; sourceTree = "<group>"; };
 		477CDDF221B80E8500C378E3 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4784741E21B7879A0066E39E /* BoxOfficeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOfficeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4784742121B7879A0066E39E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 			children = (
 				47B88AE621BB978F00963FBC /* Movies.swift */,
 				47B88AEB21BB97D600963FBC /* Movie.swift */,
+				4705175221C50CAD0070C5B4 /* MovieEvaluations.swift */,
 				47B88AE921BB97AB00963FBC /* MovieEvaluation.swift */,
 			);
 			path = Model;
@@ -347,6 +350,7 @@
 				47B88AF221BCE91C00963FBC /* SortName.swift in Sources */,
 				4705174721C4C6D80070C5B4 /* SynopsisCell.swift in Sources */,
 				47B88AE721BB978F00963FBC /* Movies.swift in Sources */,
+				4705175321C50CAD0070C5B4 /* MovieEvaluations.swift in Sources */,
 				4784742421B7879A0066E39E /* TableViewController.swift in Sources */,
 				4784742221B7879A0066E39E /* AppDelegate.swift in Sources */,
 				47B88AEA21BB97AB00963FBC /* MovieEvaluation.swift in Sources */,

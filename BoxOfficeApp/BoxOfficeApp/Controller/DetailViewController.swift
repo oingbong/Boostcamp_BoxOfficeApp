@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     var id: String?
     var movie: Movie?
+    var movieEvaluations: MovieEvaluations?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +29,20 @@ class DetailViewController: UIViewController {
                 self.tableview.reloadData()
             }
         }
+        
+        Parser.jsonUrl(with: movieId, type: .comment) { (item) in
+            guard let movieEvaluations: MovieEvaluations = Parser.decode(from: item) else { return }
+            self.movieEvaluations = movieEvaluations
+            DispatchQueue.main.async {
+                self.tableview.reloadData()
+            }
+        }
     }
 }
 
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return movieEvaluations?.count ?? 0 + 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,6 +60,12 @@ extension DetailViewController: UITableViewDataSource {
         if let peopleCell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as? PeopleCell, indexPath.row == 2 {
             peopleCell.configure(from: movie)
             return peopleCell
+        }
+        
+        if let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell, indexPath.row >= 3 {
+            guard let items = movieEvaluations?[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
+            commentCell.configure(from: items)
+            return commentCell
         }
         
         return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))

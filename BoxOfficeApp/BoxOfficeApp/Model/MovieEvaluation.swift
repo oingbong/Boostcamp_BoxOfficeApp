@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MovieEvaluation {
+struct MovieEvaluation: Decodable {
     var movie_id: String // 영화 고유ID
     var rating: Double // 평점
     var timestamp: Double // 작성일시 UNIX Timestamp 값

@@ -406,7 +406,52 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uw9-cy-Dts" id="33P-wL-e3R">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_loading" translatesAutoresizingMaskIntoConstraints="NO" id="onj-34-6de">
+                                                    <rect key="frame" x="15" y="11" width="60" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="onj-34-6de" secondAttribute="height" multiplier="1:1" id="tur-F6-Mzv"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKo-IU-ph0">
+                                                    <rect key="frame" x="83" y="11" width="42" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LY-sj-LEo">
+                                                    <rect key="frame" x="83" y="39.5" width="277" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ds-wE-cTz">
+                                                    <rect key="frame" x="83" y="67.5" width="277" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6ds-wE-cTz" secondAttribute="trailing" id="0Fd-aJ-6Ny"/>
+                                                <constraint firstItem="onj-34-6de" firstAttribute="leading" secondItem="33P-wL-e3R" secondAttribute="leadingMargin" id="3c3-Pf-eSS"/>
+                                                <constraint firstItem="0LY-sj-LEo" firstAttribute="centerY" secondItem="33P-wL-e3R" secondAttribute="centerY" id="IfP-43-96D"/>
+                                                <constraint firstItem="onj-34-6de" firstAttribute="top" secondItem="33P-wL-e3R" secondAttribute="topMargin" id="Q0L-76-a0N"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0LY-sj-LEo" secondAttribute="trailing" id="S19-5A-1ww"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="onj-34-6de" secondAttribute="bottom" constant="18" id="Szz-M9-Omi"/>
+                                                <constraint firstItem="QKo-IU-ph0" firstAttribute="leading" secondItem="onj-34-6de" secondAttribute="trailing" constant="8" id="TSZ-dB-Xtw"/>
+                                                <constraint firstItem="QKo-IU-ph0" firstAttribute="top" secondItem="33P-wL-e3R" secondAttribute="topMargin" id="e5g-5V-ZaB"/>
+                                                <constraint firstItem="0LY-sj-LEo" firstAttribute="leading" secondItem="onj-34-6de" secondAttribute="trailing" constant="8" symbolic="YES" id="nqD-Q4-EMZ"/>
+                                                <constraint firstItem="6ds-wE-cTz" firstAttribute="leading" secondItem="onj-34-6de" secondAttribute="trailing" constant="8" symbolic="YES" id="rag-DW-GrZ"/>
+                                                <constraint firstItem="0LY-sj-LEo" firstAttribute="top" secondItem="QKo-IU-ph0" secondAttribute="bottom" constant="8" symbolic="YES" id="uH2-Rh-rIb"/>
+                                                <constraint firstItem="6ds-wE-cTz" firstAttribute="top" secondItem="0LY-sj-LEo" secondAttribute="bottom" constant="7" id="v8C-fV-4yU"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentsLabel" destination="6ds-wE-cTz" id="R7H-VJ-llN"/>
+                                            <outlet property="timeStampLabel" destination="0LY-sj-LEo" id="oMW-ui-Pop"/>
+                                            <outlet property="writerLabel" destination="QKo-IU-ph0" id="i8e-61-Q16"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -582,5 +627,6 @@
     <resources>
         <image name="ic_collection" width="25" height="25"/>
         <image name="ic_table" width="24" height="24"/>
+        <image name="ic_user_loading" width="36" height="36"/>
     </resources>
 </document>

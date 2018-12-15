@@ -9,16 +9,13 @@
 import UIKit
 
 class CommentCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var writerLabel: UILabel!
+    @IBOutlet weak var timeStampLabel: UILabel!
+    @IBOutlet weak var contentsLabel: UILabel!
+    
+    func configure(from movieEvaluation: MovieEvaluation) {
+        writerLabel.text = movieEvaluation.writer
+        timeStampLabel.text = String(movieEvaluation.timestamp)
+        contentsLabel.text = movieEvaluation.contents
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }
