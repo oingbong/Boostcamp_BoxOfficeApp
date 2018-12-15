@@ -13,6 +13,7 @@
 		4705174921C4C6E10070C5B4 /* PeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705174821C4C6E10070C5B4 /* PeopleCell.swift */; };
 		4705174B21C4C6ED0070C5B4 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705174A21C4C6ED0070C5B4 /* CommentCell.swift */; };
 		4705175321C50CAD0070C5B4 /* MovieEvaluations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705175221C50CAD0070C5B4 /* MovieEvaluations.swift */; };
+		4705175521C515650070C5B4 /* StarStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705175421C515650070C5B4 /* StarStackView.swift */; };
 		477CDDF321B80E8500C378E3 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477CDDF221B80E8500C378E3 /* TableViewCell.swift */; };
 		4784742221B7879A0066E39E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784742121B7879A0066E39E /* AppDelegate.swift */; };
 		4784742421B7879A0066E39E /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4784742321B7879A0066E39E /* TableViewController.swift */; };
@@ -54,6 +55,7 @@
 		4705174821C4C6E10070C5B4 /* PeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleCell.swift; sourceTree = "<group>"; };
 		4705174A21C4C6ED0070C5B4 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		4705175221C50CAD0070C5B4 /* MovieEvaluations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEvaluations.swift; sourceTree = "<group>"; };
+		4705175421C515650070C5B4 /* StarStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarStackView.swift; sourceTree = "<group>"; };
 		477CDDF221B80E8500C378E3 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		4784741E21B7879A0066E39E /* BoxOfficeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoxOfficeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4784742121B7879A0066E39E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				4705174F21C4C74A0070C5B4 /* Util */,
 				4784742121B7879A0066E39E /* AppDelegate.swift */,
 				4784742521B7879A0066E39E /* Main.storyboard */,
+				4705175421C515650070C5B4 /* StarStackView.swift */,
 				4784742821B7879B0066E39E /* Assets.xcassets */,
 				4784742A21B7879B0066E39E /* LaunchScreen.storyboard */,
 				4784742D21B7879B0066E39E /* Info.plist */,
@@ -339,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4705174321C4C39B0070C5B4 /* DetailViewController.swift in Sources */,
+				4705175521C515650070C5B4 /* StarStackView.swift in Sources */,
 				47B88AEC21BB97D600963FBC /* Movie.swift in Sources */,
 				4705174921C4C6E10070C5B4 /* PeopleCell.swift in Sources */,
 				4784745021B799FE0066E39E /* CollectionViewController.swift in Sources */,

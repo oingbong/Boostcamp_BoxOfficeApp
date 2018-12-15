@@ -25,6 +25,7 @@ class InfoCell: UITableViewCell {
     @IBOutlet weak var userRatingTextLabel: UILabel!
     @IBOutlet weak var audienceInfoLabel: UILabel!
     @IBOutlet weak var audienceTextLabel: UILabel!
+    @IBOutlet weak var starStackView: StarStackView!
     
     func configure(from movie: Movie) {
         appendPropertyInfo(with: movie)
@@ -53,5 +54,7 @@ class InfoCell: UITableViewCell {
         audienceInfoLabel.text = "누적관객수"
         let audience = movie.audience ?? 0
         audienceTextLabel.text = String(audience)
+        let star = movie.user_rating
+        starStackView.configure(count: Int(star))
     }
 }

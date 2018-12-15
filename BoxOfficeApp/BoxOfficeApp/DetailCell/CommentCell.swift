@@ -12,10 +12,13 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
     @IBOutlet weak var contentsLabel: UILabel!
+    @IBOutlet weak var starStackView: StarStackView!
     
     func configure(from movieEvaluation: MovieEvaluation) {
         writerLabel.text = movieEvaluation.writer
         timeStampLabel.text = String(movieEvaluation.timestamp)
         contentsLabel.text = movieEvaluation.contents
+        let star = movieEvaluation.rating
+        starStackView.configure(count: Int(star))
     }
 }
