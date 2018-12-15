@@ -23,6 +23,7 @@ class CollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionview.dataSource = self
+        collectionview.delegate = self
         appendButtonItem()
     }
     
@@ -102,5 +103,14 @@ extension CollectionViewController: UICollectionViewDataSource {
         guard let items = movies?[indexPath.row] else { return UICollectionViewCell(frame: CGRect(origin: .zero, size: .zero))}
         cell.configure(from: items)
         return cell
+    }
+}
+
+extension CollectionViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        detailVC.id = self.movies?[indexPath.row].id
+        self.navigationController?.pushViewController(detailVC, animated: true)
+
     }
 }
