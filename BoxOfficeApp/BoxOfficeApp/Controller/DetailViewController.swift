@@ -37,8 +37,8 @@ extension DetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let infoCell = tableview.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoCell, let m = movie {
-            infoCell.configure(from: m)
+        if let infoCell = tableview.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoCell, let movie = movie {
+            infoCell.configure(from: movie)
             return infoCell
         }
         return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))
