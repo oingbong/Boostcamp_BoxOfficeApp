@@ -33,14 +33,21 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let infoCell = tableview.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoCell, let movie = movie {
+        guard let movie = movie else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero)) }
+        if let infoCell = tableview.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoCell, indexPath.row == 0 {
             infoCell.configure(from: movie)
             return infoCell
         }
+        
+        if let synopsisCell = tableView.dequeueReusableCell(withIdentifier: "SynopsisCell", for: indexPath) as? SynopsisCell, indexPath.row == 1 {
+            synopsisCell.configure(from: movie)
+            return synopsisCell
+        }
+        
         return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))
     }
 }

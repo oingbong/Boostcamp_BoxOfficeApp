@@ -9,16 +9,12 @@
 import UIKit
 
 class SynopsisCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    
+    func configure(from movie: Movie) {
+        titleLabel.text = "줄거리"
+        guard let synopsis = movie.synopsis else { return }
+        contentLabel.text = synopsis
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

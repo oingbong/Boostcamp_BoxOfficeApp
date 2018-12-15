@@ -290,6 +290,40 @@
                                             <outlet property="userRatingTextLabel" destination="pKG-HF-MM1" id="zoW-Ti-k6P"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SynopsisCell" rowHeight="100" id="0mD-LY-wbn" customClass="SynopsisCell" customModule="BoxOfficeApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="278" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0mD-LY-wbn" id="bfr-Hy-yvl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="njN-PM-IF9">
+                                                    <rect key="frame" x="15" y="11" width="345" height="27"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzS-bn-PV7">
+                                                    <rect key="frame" x="15" y="46" width="345" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="VzS-bn-PV7" firstAttribute="top" secondItem="njN-PM-IF9" secondAttribute="bottom" constant="8" id="5IT-P4-w34"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="njN-PM-IF9" secondAttribute="trailing" id="IgR-1l-huQ"/>
+                                                <constraint firstItem="njN-PM-IF9" firstAttribute="leading" secondItem="bfr-Hy-yvl" secondAttribute="leadingMargin" id="de4-ud-F3t"/>
+                                                <constraint firstItem="VzS-bn-PV7" firstAttribute="leading" secondItem="bfr-Hy-yvl" secondAttribute="leadingMargin" id="fw0-S5-84Z"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="VzS-bn-PV7" secondAttribute="trailing" id="gEm-QN-FVy"/>
+                                                <constraint firstItem="njN-PM-IF9" firstAttribute="top" secondItem="bfr-Hy-yvl" secondAttribute="topMargin" id="wDG-Jj-fwF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="VzS-bn-PV7" id="4sa-gk-d4w"/>
+                                            <outlet property="titleLabel" destination="njN-PM-IF9" id="wuf-ZD-uda"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
