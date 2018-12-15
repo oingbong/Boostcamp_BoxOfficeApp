@@ -17,10 +17,11 @@ class CollectionViewCell: UICollectionViewCell {
     
     func configure(from movie: Movie) {
         self.titleLabel.text = movie.title
-        let rating = "평점 : " + String(movie.user_rating)
-        let grade = "예매순위 : " + String(movie.reservation_grade)
-        let rate = "예매율 : " + String(movie.reservation_rate)
-        self.infoLabel.text = rating + grade + rate
+        self.titleLabel.adjustsFontSizeToFitWidth = true
+        let rating = String(movie.user_rating)
+        let grade = String(movie.reservation_grade)
+        let rate = String(movie.reservation_rate)
+        self.infoLabel.text = "\(grade)위(\(rating) / \(rate)%)"
         self.dateLabel.text = movie.date
         // thumb - 변경필요
         self.posterImage.image = UIImage(named: "img_placeholder")
