@@ -12,7 +12,8 @@ struct Movie: Decodable {
     var id: String // 영화 고유 ID
     var title: String // 영화제목
     var grade: Int // 관람등급
-    var thumb: String // 포스터 이미지 섬네일 주소
+    var thumb: String? // 포스터 이미지 섬네일 주소
+    var image: String? // 포스터 이미지 섬네일 주소
     var reservation_grade: Int // 예매순위
     var reservation_rate: Double // 예매율
     var user_rating: Double // 사용자 평점

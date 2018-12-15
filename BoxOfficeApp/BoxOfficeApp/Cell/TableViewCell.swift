@@ -24,7 +24,7 @@ class TableViewCell: UITableViewCell {
         self.dateLabel.text = movie.date
         // thumb - 변경필요
         self.posterImage.image = UIImage(named: "img_placeholder")
-        if let thumbUrl = URL(string: movie.thumb), let thumbData = try? Data(contentsOf: thumbUrl) {
+        if let thumb = movie.thumb, let thumbUrl = URL(string: thumb), let thumbData = try? Data(contentsOf: thumbUrl) {
             self.posterImage.image = UIImage(data: thumbData)
         }
         // grade

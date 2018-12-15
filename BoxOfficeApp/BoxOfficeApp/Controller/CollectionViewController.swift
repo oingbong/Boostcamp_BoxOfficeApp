@@ -57,8 +57,9 @@ class CollectionViewController: UIViewController {
     }
     
     private func parse(orderType: Int) {
-        Parser.json(with: orderType) { (items) in
-            self.movies = Movies(orderType: items.orderType, data: items.data)
+        Parser.jsonUrl(with: String(orderType), type: .orderType) { (items) in
+            guard let movieItem: Movies = Parser.decode(from: items) else { return }
+            self.movies = movieItem
             DispatchQueue.main.async {
                 self.collectionview.reloadData()
             }

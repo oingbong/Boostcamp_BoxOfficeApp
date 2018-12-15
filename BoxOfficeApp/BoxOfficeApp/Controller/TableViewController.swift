@@ -23,6 +23,7 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.dataSource = self
+        tableview.delegate = self
         appendButtonItem()
         configure(with: 0) // 1
     }
@@ -53,8 +54,9 @@ class TableViewController: UIViewController {
     }
     
     private func parse(orderType: Int) {
-        Parser.json(with: orderType) { (items) in
-            self.movies = Movies(orderType: items.orderType, data: items.data)
+        Parser.jsonUrl(with: String(orderType), type: .orderType) { (items) in
+            guard let movieItem: Movies = Parser.decode(from: items) else { return }
+            self.movies = movieItem
             DispatchQueue.main.async {
                 self.tableview.reloadData()
             }
@@ -100,3 +102,10 @@ extension TableViewController: UITableViewDataSource {
     }
 }
 
+extension TableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        detailVC.id = self.movies?[indexPath.row].id
+        self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
