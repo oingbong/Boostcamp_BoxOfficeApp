@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -91,6 +90,94 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1580" y="-901.79910044977521"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="XbB-S7-4Zn">
+            <objects>
+                <viewController storyboardIdentifier="DetailViewController" id="bg7-M1-Mdr" customClass="DetailViewController" customModule="BoxOfficeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q5y-HJ-pQT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LfF-Tx-x18">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="250" id="bcp-Ve-ANp">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="250"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bcp-Ve-ANp" id="kZd-TV-Exw">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="249.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aB1-mF-f4e">
+                                                    <rect key="frame" x="15" y="11" width="100" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="dtl-Dp-eUK"/>
+                                                        <constraint firstAttribute="height" constant="120" id="yte-Q6-A7a"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUP-rZ-0XG">
+                                                    <rect key="frame" x="15" y="141" width="345" height="98"/>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="O7w-Bb-UA2">
+                                                    <rect key="frame" x="135" y="11" width="225" height="122"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="SUP-rZ-0XG" firstAttribute="top" secondItem="aB1-mF-f4e" secondAttribute="bottom" constant="10" id="5s9-rZ-R4r"/>
+                                                <constraint firstItem="SUP-rZ-0XG" firstAttribute="leading" secondItem="kZd-TV-Exw" secondAttribute="leadingMargin" id="5x6-Dh-J3p"/>
+                                                <constraint firstItem="SUP-rZ-0XG" firstAttribute="bottom" secondItem="kZd-TV-Exw" secondAttribute="bottomMargin" id="CcW-pT-UOp"/>
+                                                <constraint firstItem="SUP-rZ-0XG" firstAttribute="top" secondItem="O7w-Bb-UA2" secondAttribute="bottom" constant="8" symbolic="YES" id="Onz-Uw-agb"/>
+                                                <constraint firstItem="aB1-mF-f4e" firstAttribute="top" secondItem="kZd-TV-Exw" secondAttribute="topMargin" id="XbH-RA-yPd"/>
+                                                <constraint firstItem="O7w-Bb-UA2" firstAttribute="top" secondItem="kZd-TV-Exw" secondAttribute="topMargin" id="dh7-C1-VpO"/>
+                                                <constraint firstItem="SUP-rZ-0XG" firstAttribute="trailing" secondItem="kZd-TV-Exw" secondAttribute="trailingMargin" id="hwu-DS-96c"/>
+                                                <constraint firstItem="O7w-Bb-UA2" firstAttribute="trailing" secondItem="kZd-TV-Exw" secondAttribute="trailingMargin" id="m2K-mc-F67"/>
+                                                <constraint firstItem="O7w-Bb-UA2" firstAttribute="leading" secondItem="aB1-mF-f4e" secondAttribute="trailing" constant="20" id="oGJ-8z-ja1"/>
+                                                <constraint firstItem="aB1-mF-f4e" firstAttribute="leading" secondItem="kZd-TV-Exw" secondAttribute="leadingMargin" id="pDB-bh-Bly"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="biZ-vf-puJ">
+                                        <rect key="frame" x="0.0" y="278" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="biZ-vf-puJ" id="6lN-Cs-khL">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="djv-4S-04j">
+                                        <rect key="frame" x="0.0" y="322" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="djv-4S-04j" id="QGc-Vz-cDz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="DG8-zg-yEW">
+                                        <rect key="frame" x="0.0" y="366" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DG8-zg-yEW" id="jSf-YZ-Z6k">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LfF-Tx-x18" firstAttribute="leading" secondItem="VGj-6Z-bZb" secondAttribute="leading" id="YrL-Yg-vId"/>
+                            <constraint firstItem="VGj-6Z-bZb" firstAttribute="trailing" secondItem="LfF-Tx-x18" secondAttribute="trailing" id="etB-op-PTr"/>
+                            <constraint firstItem="LfF-Tx-x18" firstAttribute="top" secondItem="VGj-6Z-bZb" secondAttribute="top" id="gGP-KD-8CW"/>
+                            <constraint firstItem="VGj-6Z-bZb" firstAttribute="bottom" secondItem="LfF-Tx-x18" secondAttribute="bottom" id="za5-R9-LNb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VGj-6Z-bZb"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yGf-L1-bz0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2720.8000000000002" y="-547.37631184407803"/>
         </scene>
         <!--Table-->
         <scene sceneID="6Ta-zJ-rX5">
