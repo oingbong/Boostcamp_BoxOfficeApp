@@ -11,9 +11,17 @@ import Foundation
 class Cinema {
     static let shared = Cinema()
     
-    var movies: Movies?
-    var movieEvaluations: MovieEvaluations?
-    var selectedMovie: Movie?
+    private var movies: Movies?
+    private var movieEvaluations: MovieEvaluations?
+    var selectedMovie: Movie? // for Table, Collection View (not private)
+    
+    var moviesCount: Int {
+        return movies?.count ?? 0
+    }
+    
+    var movieEvaluationsCount: Int {
+        return movieEvaluations?.count ?? 0
+    }
     
     func parse(with orderType: Int) {
         Parser.jsonUrl(with: String(orderType), type: .orderType) { (items) in
@@ -42,5 +50,13 @@ class Cinema {
     
     func orderType() -> Int {
         return self.movies?.orderType ?? -1
+    }
+    
+    subscript(index: Int) -> Movie? {
+        return movies?[index]
+    }
+    
+    func evaluationsSubscript(index: Int) -> MovieEvaluation? {
+        return movieEvaluations?[index]
     }
 }

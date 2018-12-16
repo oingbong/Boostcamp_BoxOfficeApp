@@ -10,7 +10,7 @@ import UIKit
 
 class CollectionViewController: UIViewController {
     @IBOutlet weak var collectionview: UICollectionView!
-    var cinema = Cinema.shared
+    private var cinema = Cinema.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,12 +56,12 @@ class CollectionViewController: UIViewController {
 
 extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cinema.movies?.count ?? 0
+        return cinema.moviesCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        guard let items = cinema.movies?[indexPath.row] else { return UICollectionViewCell(frame: CGRect(origin: .zero, size: .zero))}
+        guard let items = cinema[indexPath.row] else { return UICollectionViewCell(frame: CGRect(origin: .zero, size: .zero))}
         cell.configure(from: items)
         return cell
     }
@@ -70,7 +70,7 @@ extension CollectionViewController: UICollectionViewDataSource {
 extension CollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        detailVC.id = cinema.movies?[indexPath.row].id
+        detailVC.id = cinema[indexPath.row]?.id
         self.navigationController?.pushViewController(detailVC, animated: true)
 
     }

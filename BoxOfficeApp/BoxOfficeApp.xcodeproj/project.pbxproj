@@ -137,8 +137,8 @@
 			children = (
 				4784742321B7879A0066E39E /* TableViewController.swift */,
 				4784744F21B799FE0066E39E /* CollectionViewController.swift */,
-				47EDEA2921C6410000D08FC9 /* UIAlertController+Movie.swift */,
 				4705174221C4C39B0070C5B4 /* DetailViewController.swift */,
+				47EDEA2921C6410000D08FC9 /* UIAlertController+Movie.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

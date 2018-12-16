@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
-    var cinema = Cinema.shared
+    private var cinema = Cinema.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,12 +56,12 @@ class TableViewController: UIViewController {
 
 extension TableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cinema.movies?.count ?? 0
+        return cinema.moviesCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-        guard let items = cinema.movies?[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
+        guard let items = cinema[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
         cell.configure(from: items)
         return cell
     }
@@ -70,7 +70,7 @@ extension TableViewController: UITableViewDataSource {
 extension TableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        detailVC.id = cinema.movies?[indexPath.row].id
+        detailVC.id = cinema[indexPath.row]?.id
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
