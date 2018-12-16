@@ -45,7 +45,7 @@ class TableViewController: UIViewController, Watchable {
     }
     
     func configureTitle(from element: Int) {
-        guard let sort = SortName(rawValue: element) else { return }
+        guard let sort = OrderType(rawValue: element) else { return }
         self.navigationItem.title = sort.description
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
