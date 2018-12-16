@@ -86,13 +86,11 @@ extension InfoCell {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(_:)))
         newImageView.addGestureRecognizer(tapGesture)
         superview?.addSubview(newImageView)
-        let key = Notification.Name(rawValue: "isHidden")
-        NotificationCenter.default.post(name: key, object: nil, userInfo: ["isHidden" : true])
+        NotificationCenter.default.post(name: NotificationKey.isHidden, object: nil, userInfo: [NotificationKey.userInfoIsHidden : true])
     }
     
     @objc func dismissFullscreenImage(_ gesture: UITapGestureRecognizer) {
         gesture.view?.removeFromSuperview()
-        let key = Notification.Name(rawValue: "isHidden")
-        NotificationCenter.default.post(name: key, object: nil, userInfo: ["isHidden" : false])
+        NotificationCenter.default.post(name: NotificationKey.isHidden, object: nil, userInfo: [NotificationKey.userInfoIsHidden : false])
     }
 }

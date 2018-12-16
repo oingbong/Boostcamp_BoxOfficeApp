@@ -34,6 +34,7 @@
 		47EDEA2621C638A900D08FC9 /* MovieTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA2521C638A900D08FC9 /* MovieTerms.swift */; };
 		47EDEA2A21C6410000D08FC9 /* UIAlertController+Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA2921C6410000D08FC9 /* UIAlertController+Movie.swift */; };
 		47EDEA2E21C6605F00D08FC9 /* UIViewController+Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA2D21C6605F00D08FC9 /* UIViewController+Indicator.swift */; };
+		47EDEA3121C68B9500D08FC9 /* NotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA3021C68B9500D08FC9 /* NotificationKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		47EDEA2521C638A900D08FC9 /* MovieTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTerms.swift; sourceTree = "<group>"; };
 		47EDEA2921C6410000D08FC9 /* UIAlertController+Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Movie.swift"; sourceTree = "<group>"; };
 		47EDEA2D21C6605F00D08FC9 /* UIViewController+Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Indicator.swift"; sourceTree = "<group>"; };
+		47EDEA3021C68B9500D08FC9 /* NotificationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				47B88AF121BCE91C00963FBC /* SortName.swift */,
 				47EDEA2321C6327400D08FC9 /* OrderType.swift */,
 				47EDEA2521C638A900D08FC9 /* MovieTerms.swift */,
+				47EDEA3021C68B9500D08FC9 /* NotificationKey.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				47B88AF421BCED6800963FBC /* Parser.swift in Sources */,
 				4705174B21C4C6ED0070C5B4 /* CommentCell.swift in Sources */,
 				47B88AEE21BBA2B600963FBC /* CollectionViewCell.swift in Sources */,
+				47EDEA3121C68B9500D08FC9 /* NotificationKey.swift in Sources */,
 				4705174521C4C6CB0070C5B4 /* InfoCell.swift in Sources */,
 				477CDDF321B80E8500C378E3 /* TableViewCell.swift in Sources */,
 				47EDEA2621C638A900D08FC9 /* MovieTerms.swift in Sources */,

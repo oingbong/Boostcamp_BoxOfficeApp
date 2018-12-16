@@ -84,10 +84,8 @@ extension TableViewController: UITableViewDelegate {
 
 extension TableViewController {
     private func configureObservers() {
-        let updateItemKey = Notification.Name(rawValue: "updateItem")
-        NotificationCenter.default.addObserver(self, selector: #selector(updateItems), name: updateItemKey, object: nil)
-        let sortedKey = Notification.Name(rawValue: "sorted")
-        NotificationCenter.default.addObserver(self, selector: #selector(sorted(_:)), name: sortedKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateItems), name: NotificationKey.updateItem, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(sorted(_:)), name: NotificationKey.sorted, object: nil)
     }
     
     @objc private func updateItems() {
@@ -97,7 +95,7 @@ extension TableViewController {
     }
     
     @objc private func sorted(_ notification: Notification) {
-        guard let value = notification.userInfo?["value"] as? Int else { return }
+        guard let value = notification.userInfo?[NotificationKey.userInfoValue] as? Int else { return }
         configure(with: value)
     }
 }

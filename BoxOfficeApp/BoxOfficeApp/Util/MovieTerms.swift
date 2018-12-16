@@ -15,6 +15,7 @@ struct MovieTerms {
     let imagePlaceHolder = "img_placeholder"
     let defaultName = "ic_"
     let defaultImage = "ic_allages"
+    let settingImage = "ic_settings"
     let rank = "위"
     let percent = "%"
     let directorTitle = "감독"
