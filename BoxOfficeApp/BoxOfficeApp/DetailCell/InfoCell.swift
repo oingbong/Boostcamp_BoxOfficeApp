@@ -53,9 +53,16 @@ class InfoCell: UITableViewCell {
         userRatingInfoLabel.text = terms.ratingTitle
         userRatingTextLabel.text = String(movie.user_rating)
         audienceInfoLabel.text = terms.audience
-        let audience = movie.audience ?? 0
-        audienceTextLabel.text = String(audience)
+        let audience = format(with: movie.audience ?? 0) ?? "0"
+        audienceTextLabel.text = audience
         let star = movie.user_rating
         starStackView.configure(count: Int(star))
+    }
+    
+    private func format(with audience: Int) -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        let result = formatter.string(from: NSNumber(value: audience))
+        return result
     }
 }
