@@ -19,9 +19,9 @@ class CollectionViewCell: UICollectionViewCell {
     func configure(from movie: Movie) {
         self.titleLabel.text = movie.title
         self.titleLabel.adjustsFontSizeToFitWidth = true
-        let rating = String(movie.user_rating)
-        let grade = String(movie.reservation_grade)
-        let rate = String(movie.reservation_rate)
+        let rating = String(movie.userRating)
+        let grade = String(movie.reservationGrade)
+        let rate = String(movie.raservationRate)
         self.infoLabel.text = "\(grade)\(terms.rank)(\(rating) / \(rate)\(terms.percent))"
         self.dateLabel.text = movie.date
         // thumb - 변경필요

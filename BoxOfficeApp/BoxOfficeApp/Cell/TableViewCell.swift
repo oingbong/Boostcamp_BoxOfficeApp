@@ -18,9 +18,9 @@ class TableViewCell: UITableViewCell {
     
     func configure(from movie: Movie) {
         self.titleLabel.text = movie.title
-        let rating = "\(terms.ratingTitle) : \(String(movie.user_rating))"
-        let grade = "\(terms.gradeTitle) : \(String(movie.reservation_grade))"
-        let rate = "\(terms.rateTitle) : \(String(movie.reservation_rate))"
+        let rating = "\(terms.ratingTitle) : \(String(movie.userRating))"
+        let grade = "\(terms.gradeTitle) : \(String(movie.reservationGrade))"
+        let rate = "\(terms.rateTitle) : \(String(movie.raservationRate))"
         self.infoLabel.text = "\(rating) \(grade) \(rate)"
         self.dateLabel.text = movie.date
         // thumb - 변경필요

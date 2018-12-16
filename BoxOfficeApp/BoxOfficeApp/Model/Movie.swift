@@ -14,9 +14,9 @@ struct Movie: Decodable {
     var grade: Int // 관람등급
     var thumb: String? // 포스터 이미지 섬네일 주소
     var image: String? // 포스터 이미지 섬네일 주소
-    var reservation_grade: Int // 예매순위
-    var reservation_rate: Double // 예매율
-    var user_rating: Double // 사용자 평점
+    var reservationGrade: Int // 예매순위
+    var raservationRate: Double // 예매율
+    var userRating: Double // 사용자 평점
     var date: String // 개봉일
     // for Details
     var audience: Int? // 총 관람객 수
@@ -25,4 +25,22 @@ struct Movie: Decodable {
     var director: String? // 감독
     var synopsis: String? // 줄거리
     var genre: String? // 영화 장르
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case title = "title"
+        case grade = "grade"
+        case thumb = "thumb"
+        case image = "image"
+        case reservationGrade = "reservation_grade"
+        case raservationRate = "reservation_rate"
+        case userRating = "user_rating"
+        case date = "date"
+        case audience = "audience"
+        case actor = "actor"
+        case duration = "duration"
+        case director = "director"
+        case synopsis = "synopsis"
+        case genre = "genre"
+    }
 }

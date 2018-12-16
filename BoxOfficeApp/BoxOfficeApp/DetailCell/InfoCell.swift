@@ -48,15 +48,15 @@ class InfoCell: UITableViewCell {
     
     private func appendPropertySubInfo(with movie: Movie) {
         reservationInfoLabel.text = terms.rateTitle
-        let grade = String(movie.reservation_grade)
-        let rate = String(movie.reservation_rate)
+        let grade = String(movie.reservationGrade)
+        let rate = String(movie.raservationRate)
         reservationTextLabel.text = "\(grade)\(terms.rank) \(rate)\(terms.percent)"
         userRatingInfoLabel.text = terms.ratingTitle
-        userRatingTextLabel.text = String(movie.user_rating)
+        userRatingTextLabel.text = String(movie.userRating)
         audienceInfoLabel.text = terms.audience
         let audience = format(with: movie.audience ?? 0) ?? "0"
         audienceTextLabel.text = audience
-        let star = movie.user_rating
+        let star = movie.userRating
         starStackView.configure(count: Int(star))
     }
     
