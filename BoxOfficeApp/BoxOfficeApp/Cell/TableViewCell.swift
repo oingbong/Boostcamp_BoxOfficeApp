@@ -20,7 +20,7 @@ class TableViewCell: UITableViewCell {
         let rating = "평점 : " + String(movie.user_rating)
         let grade = "예매순위 : " + String(movie.reservation_grade)
         let rate = "예매율 : " + String(movie.reservation_rate)
-        self.infoLabel.text = rating + grade + rate
+        self.infoLabel.text = "\(rating) \(grade) \(rate)"
         self.dateLabel.text = movie.date
         // thumb - 변경필요
         self.posterImage.image = UIImage(named: "img_placeholder")

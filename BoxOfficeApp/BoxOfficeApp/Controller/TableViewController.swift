@@ -108,4 +108,8 @@ extension TableViewController: UITableViewDelegate {
         detailVC.id = self.movies?[indexPath.row].id
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }

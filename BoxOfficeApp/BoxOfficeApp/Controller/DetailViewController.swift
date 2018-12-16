@@ -47,25 +47,28 @@ extension DetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let movie = movie else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero)) }
-        if let infoCell = tableview.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoCell, indexPath.row == 0 {
-            infoCell.configure(from: movie)
-            return infoCell
-        }
-        
-        if let synopsisCell = tableView.dequeueReusableCell(withIdentifier: "SynopsisCell", for: indexPath) as? SynopsisCell, indexPath.row == 1 {
-            synopsisCell.configure(from: movie)
-            return synopsisCell
-        }
-        
-        if let peopleCell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as? PeopleCell, indexPath.row == 2 {
-            peopleCell.configure(from: movie)
-            return peopleCell
-        }
-        
-        if let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell, indexPath.row >= 3 {
-            guard let items = movieEvaluations?[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
-            commentCell.configure(from: items)
-            return commentCell
+        switch indexPath.row {
+        case 0:
+            if let cell = tableview.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoCell {
+                cell.configure(from: movie)
+                return cell
+            }
+        case 1:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SynopsisCell", for: indexPath) as? SynopsisCell {
+                cell.configure(from: movie)
+                return cell
+            }
+        case 2:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleCell", for: indexPath) as? PeopleCell {
+                cell.configure(from: movie)
+                return cell
+            }
+        default:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell {
+                guard let items = movieEvaluations?[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
+                cell.configure(from: items)
+                return cell
+            }
         }
         
         return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))
