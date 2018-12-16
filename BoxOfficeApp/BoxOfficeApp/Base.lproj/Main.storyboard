@@ -44,11 +44,11 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMY-Fa-kua">
-                                                    <rect key="frame" x="81" y="43" width="42" height="21"/>
+                                                    <rect key="frame" x="81" y="43" width="37.333333333333343" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="8SV-1G-QUs"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

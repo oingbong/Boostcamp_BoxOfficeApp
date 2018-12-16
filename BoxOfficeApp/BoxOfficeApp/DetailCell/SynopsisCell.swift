@@ -11,9 +11,10 @@ import UIKit
 class SynopsisCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
+    let terms = MovieTerms()
     
     func configure(from movie: Movie) {
-        titleLabel.text = "줄거리"
+        titleLabel.text = terms.synopsis
         guard let synopsis = movie.synopsis else { return }
         contentLabel.text = synopsis
     }

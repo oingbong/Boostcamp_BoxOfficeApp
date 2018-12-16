@@ -14,20 +14,21 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ageImage: UIImageView!
+    let terms = MovieTerms()
     
     func configure(from movie: Movie) {
         self.titleLabel.text = movie.title
-        let rating = "평점 : " + String(movie.user_rating)
-        let grade = "예매순위 : " + String(movie.reservation_grade)
-        let rate = "예매율 : " + String(movie.reservation_rate)
+        let rating = "\(terms.ratingTitle) : \(String(movie.user_rating))"
+        let grade = "\(terms.gradeTitle) : \(String(movie.reservation_grade))"
+        let rate = "\(terms.rateTitle) : \(String(movie.reservation_rate))"
         self.infoLabel.text = "\(rating) \(grade) \(rate)"
         self.dateLabel.text = movie.date
         // thumb - 변경필요
-        self.posterImage.image = UIImage(named: "img_placeholder")
+        self.posterImage.image = UIImage(named: terms.imagePlaceHolder)
         if let thumb = movie.thumb, let thumbUrl = URL(string: thumb), let thumbData = try? Data(contentsOf: thumbUrl) {
             self.posterImage.image = UIImage(data: thumbData)
         }
         // grade
-        self.ageImage.image = UIImage(named: "ic_\(movie.grade)") ?? UIImage(named: "ic_allages")
+        self.ageImage.image = UIImage(named: "\(terms.defaultName)\(movie.grade)") ?? UIImage(named: terms.defaultImage)
     }
 }

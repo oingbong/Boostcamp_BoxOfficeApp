@@ -31,6 +31,7 @@
 		47B88AF421BCED6800963FBC /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B88AF321BCED6800963FBC /* Parser.swift */; };
 		47EDEA2221C61F8A00D08FC9 /* Cinema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA2121C61F8A00D08FC9 /* Cinema.swift */; };
 		47EDEA2421C6327400D08FC9 /* OrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA2321C6327400D08FC9 /* OrderType.swift */; };
+		47EDEA2621C638A900D08FC9 /* MovieTerms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA2521C638A900D08FC9 /* MovieTerms.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		47B88AF321BCED6800963FBC /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		47EDEA2121C61F8A00D08FC9 /* Cinema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cinema.swift; sourceTree = "<group>"; };
 		47EDEA2321C6327400D08FC9 /* OrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderType.swift; sourceTree = "<group>"; };
+		47EDEA2521C638A900D08FC9 /* MovieTerms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTerms.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				47B88AF321BCED6800963FBC /* Parser.swift */,
 				47B88AF121BCE91C00963FBC /* SortName.swift */,
 				47EDEA2321C6327400D08FC9 /* OrderType.swift */,
+				47EDEA2521C638A900D08FC9 /* MovieTerms.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				47B88AEE21BBA2B600963FBC /* CollectionViewCell.swift in Sources */,
 				4705174521C4C6CB0070C5B4 /* InfoCell.swift in Sources */,
 				477CDDF321B80E8500C378E3 /* TableViewCell.swift in Sources */,
+				47EDEA2621C638A900D08FC9 /* MovieTerms.swift in Sources */,
 				47B88AF221BCE91C00963FBC /* SortName.swift in Sources */,
 				4705174721C4C6D80070C5B4 /* SynopsisCell.swift in Sources */,
 				47EDEA2221C61F8A00D08FC9 /* Cinema.swift in Sources */,

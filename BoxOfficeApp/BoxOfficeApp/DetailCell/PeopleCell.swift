@@ -14,6 +14,7 @@ class PeopleCell: UITableViewCell {
     @IBOutlet weak var directorTextLabel: UILabel!
     @IBOutlet weak var actorTitleLabel: UILabel!
     @IBOutlet weak var actorTextLabel: UILabel!
+    let terms = MovieTerms()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,10 +30,10 @@ class PeopleCell: UITableViewCell {
     func configure(from movie: Movie) {
         guard let director = movie.director else { return }
         guard let actor = movie.actor else { return }
-        titleLabel.text = "감독 / 출연"
-        directorTitleLabel.text = "감독"
+        titleLabel.text = "\(terms.directorTitle) / \(terms.actorTitle)"
+        directorTitleLabel.text = terms.directorTitle
         directorTextLabel.text = director
-        actorTitleLabel.text = "출연"
+        actorTitleLabel.text = terms.actorTitle
         actorTextLabel.text = actor
     }
 

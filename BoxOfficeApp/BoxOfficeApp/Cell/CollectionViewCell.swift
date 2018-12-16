@@ -14,6 +14,7 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ageImage: UIImageView!
+    let terms = MovieTerms()
     
     func configure(from movie: Movie) {
         self.titleLabel.text = movie.title
@@ -21,14 +22,14 @@ class CollectionViewCell: UICollectionViewCell {
         let rating = String(movie.user_rating)
         let grade = String(movie.reservation_grade)
         let rate = String(movie.reservation_rate)
-        self.infoLabel.text = "\(grade)위(\(rating) / \(rate)%)"
+        self.infoLabel.text = "\(grade)\(terms.rank)(\(rating) / \(rate)\(terms.percent))"
         self.dateLabel.text = movie.date
         // thumb - 변경필요
-        self.posterImage.image = UIImage(named: "img_placeholder")
+        self.posterImage.image = UIImage(named: terms.imagePlaceHolder)
         if let thumb = movie.thumb, let thumbUrl = URL(string: thumb), let thumbData = try? Data(contentsOf: thumbUrl) {
             self.posterImage.image = UIImage(data: thumbData)
         }
         // grade
-        self.ageImage.image = UIImage(named: "ic_\(movie.grade)") ?? UIImage(named: "ic_allages")
+        self.ageImage.image = UIImage(named: "\(terms.defaultName)\(movie.grade)") ?? UIImage(named: terms.defaultImage)
     }
 }

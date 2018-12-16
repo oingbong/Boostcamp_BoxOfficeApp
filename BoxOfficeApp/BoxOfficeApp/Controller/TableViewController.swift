@@ -50,13 +50,13 @@ class TableViewController: UIViewController {
     
     @objc private func sorted() {
         let alert = UIAlertController(title: "정렬방식 선택", message: "영화를 어떤 순서로 정렬할까요?", preferredStyle: .actionSheet)
-        let reservationRate = UIAlertAction(title: "예매율", style: .default) { (_) in
+        let reservationRate = UIAlertAction(title: OrderType.rate.description, style: .default) { (_) in
             self.configure(with: 0)
         }
-        let curation = UIAlertAction(title: "큐레이션", style: .default) { (_) in
+        let curation = UIAlertAction(title: OrderType.curation.description, style: .default) { (_) in
             self.configure(with: 1)
         }
-        let date = UIAlertAction(title: "개봉일", style: .default) { (_) in
+        let date = UIAlertAction(title: OrderType.date.description, style: .default) { (_) in
             self.configure(with: 2)
         }
         
