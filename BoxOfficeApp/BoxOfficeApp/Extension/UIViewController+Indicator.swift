@@ -24,6 +24,7 @@ extension UIViewController {
     
     func removeSpinner(view: UIView) {
         DispatchQueue.main.async {
+            guard view.subviews.count >= 2 else { return }
             let subview = view.subviews[view.subviews.count - 1]
             subview.removeFromSuperview()
         }

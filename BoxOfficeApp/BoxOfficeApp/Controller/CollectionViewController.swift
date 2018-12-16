@@ -11,12 +11,15 @@ import UIKit
 class CollectionViewController: UIViewController {
     @IBOutlet weak var collectionview: UICollectionView!
     private var cinema = Cinema.shared
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureObservers()
         collectionview.dataSource = self
         collectionview.delegate = self
+        collectionview.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         appendButtonItem()
     }
     
@@ -36,6 +39,7 @@ class CollectionViewController: UIViewController {
     }
     
     private func configure(with element: Int) {
+        self.displaySpinner(view: self.view)
         cinema.parse(with: element, viewController: self)
         configureTitle(from: element)
     }
@@ -92,5 +96,14 @@ extension CollectionViewController {
     @objc private func sorted(_ notification: Notification) {
         guard let value = notification.userInfo?["value"] as? Int else { return }
         configure(with: value)
+    }
+}
+
+extension CollectionViewController {
+    @objc private func refreshData(_ sender: Any) {
+        let title = self.navigationItem.title ?? OrderType.rate.description
+        let selectedOrderType = OrderType.selected(with: title)
+        cinema.parse(with: selectedOrderType, viewController: self)
+        refreshControl.endRefreshing()
     }
 }

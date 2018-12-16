@@ -11,12 +11,15 @@ import UIKit
 class TableViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     private var cinema = Cinema.shared
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureObservers()
         tableview.dataSource = self
         tableview.delegate = self
+        tableview.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         appendButtonItem()
     }
     
@@ -36,6 +39,7 @@ class TableViewController: UIViewController {
     }
     
     private func configure(with element: Int) {
+        self.displaySpinner(view: self.view)
         cinema.parse(with: element, viewController: self)
         configureTitle(from: element)
     }
@@ -95,5 +99,14 @@ extension TableViewController {
     @objc private func sorted(_ notification: Notification) {
         guard let value = notification.userInfo?["value"] as? Int else { return }
         configure(with: value)
+    }
+}
+
+extension TableViewController {
+    @objc private func refreshData(_ sender: Any) {
+        let title = self.navigationItem.title ?? OrderType.rate.description
+        let selectedOrderType = OrderType.selected(with: title)
+        cinema.parse(with: selectedOrderType, viewController: self)
+        refreshControl.endRefreshing()
     }
 }

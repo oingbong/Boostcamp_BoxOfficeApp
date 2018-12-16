@@ -28,7 +28,6 @@ struct Parser {
     }
     
     static func jsonUrl(with value: String, type: URLType, vc: UIViewController, handler: @escaping (Data?) -> Void) {
-        vc.displaySpinner(view: vc.view)
         // 1. URL 객체 정의 - else 일 때 사용자에게 알람 (선택사항)
         guard let url = URL(string: "\(type.description)\(value)") else { return }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
