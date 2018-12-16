@@ -10,18 +10,11 @@ import UIKit
 
 class TableViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
-    var movies: Movies?
-    
-    /*
-     정렬기준 데이터 공유에 대한 설명
-     1. 둘다 nil : 처음에만 발생하는 상황이므로 viewDidLoad 에서 디폴트값 0 으로 처리
-     2. 둘다 있거나
-     1) 동일하면 데이터 유지 : nothing
-     2) 다르면 컬렉션뷰 따라가기 : 세팅 및 데이터 호출
-     */
+    var cinema = Cinema.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureObservers()
         tableview.dataSource = self
         tableview.delegate = self
         appendButtonItem()
@@ -29,15 +22,10 @@ class TableViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        guard let tabBar = self.tabBarController?.viewControllers else { return }
-        guard let naviBar = tabBar[1] as? UINavigationController else { return }
-        guard let collectionView = naviBar.viewControllers.first as? CollectionViewController else { return }
-        // 2
-        if let orderType = self.movies?.orderType,
-            let anotherOrderType = collectionView.movies?.orderType,
-            orderType != anotherOrderType {
-            self.movies?.orderType = anotherOrderType
-            configure(with: anotherOrderType)
+        guard let title = self.navigationItem.title else { return }
+        let selectedOrderType = OrderType.selected(with: title)
+        if cinema.orderType() != selectedOrderType {
+            configure(with: cinema.orderType())
         }
     }
     
@@ -49,18 +37,8 @@ class TableViewController: UIViewController {
     }
     
     private func configure(with element: Int) {
-        parse(orderType: element)
+        cinema.parse(with: element)
         configureTitle(from: element)
-    }
-    
-    private func parse(orderType: Int) {
-        Parser.jsonUrl(with: String(orderType), type: .orderType) { (items) in
-            guard let movieItem: Movies = Parser.decode(from: items) else { return }
-            self.movies = movieItem
-            DispatchQueue.main.async {
-                self.tableview.reloadData()
-            }
-        }
     }
     
     private func configureTitle(from element: Int) {
@@ -91,12 +69,12 @@ class TableViewController: UIViewController {
 
 extension TableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies?.count ?? 0
+        return cinema.movies?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableview.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-        guard let items = movies?[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
+        guard let items = cinema.movies?[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
         cell.configure(from: items)
         return cell
     }
@@ -105,11 +83,24 @@ extension TableViewController: UITableViewDataSource {
 extension TableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        detailVC.id = self.movies?[indexPath.row].id
+        detailVC.id = cinema.movies?[indexPath.row].id
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+}
+
+extension TableViewController {
+    private func configureObservers() {
+        let key = Notification.Name(rawValue: "updateItem")
+        NotificationCenter.default.addObserver(self, selector: #selector(updateItems), name: key, object: nil)
+    }
+    
+    @objc private func updateItems() {
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+        }
     }
 }

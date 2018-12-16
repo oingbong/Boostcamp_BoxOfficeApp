@@ -10,38 +10,22 @@ import UIKit
 
 class CollectionViewController: UIViewController {
     @IBOutlet weak var collectionview: UICollectionView!
-    var movies: Movies?
-    
-    /*
-     정렬기준 데이터 공유에 대한 설명
-     1. 컬렉션뷰의 orderType nil : 테이블뷰 따라가기
-     2. 둘다 있거나
-     1) 동일하면 데이터 유지 : nothing
-     2) 다르면 테이블뷰 따라가기 : 세팅 및 데이터 호출
-     */
+    var cinema = Cinema.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureObservers()
         collectionview.dataSource = self
         collectionview.delegate = self
         appendButtonItem()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        guard let tabBar = self.tabBarController?.viewControllers else { return }
-        guard let naviBar = tabBar[0] as? UINavigationController else { return }
-        guard let tableView = naviBar.viewControllers.first as? TableViewController else { return }
-        
-        if let orderType = self.movies?.orderType,
-            let anotherOrderType = tableView.movies?.orderType,
-            orderType != anotherOrderType {
-            // 2
-            self.movies?.orderType = anotherOrderType
-            configure(with: anotherOrderType)
-        } else if let anotherOrderType = tableView.movies?.orderType {
-            // 1
-            self.movies?.orderType = anotherOrderType
-            configure(with: anotherOrderType)
+        let title = self.navigationItem.title ?? ""
+        let selectedOrderType = OrderType.selected(with: title)
+        // 타이틀값 없거나 모델이 가진 타입과 다르다면 변경 or 아니면 그대로 둡니다.
+        if selectedOrderType < 0 || cinema.orderType() != selectedOrderType {
+            configure(with: cinema.orderType())
         }
     }
     
@@ -53,18 +37,8 @@ class CollectionViewController: UIViewController {
     }
     
     private func configure(with element: Int) {
-        parse(orderType: element)
+        cinema.parse(with: element)
         configureTitle(from: element)
-    }
-    
-    private func parse(orderType: Int) {
-        Parser.jsonUrl(with: String(orderType), type: .orderType) { (items) in
-            guard let movieItem: Movies = Parser.decode(from: items) else { return }
-            self.movies = movieItem
-            DispatchQueue.main.async {
-                self.collectionview.reloadData()
-            }
-        }
     }
     
     private func configureTitle(from element: Int) {
@@ -76,13 +50,13 @@ class CollectionViewController: UIViewController {
     
     @objc private func sorted() {
         let alert = UIAlertController(title: "정렬방식 선택", message: "영화를 어떤 순서로 정렬할까요?", preferredStyle: .actionSheet)
-        let reservationRate = UIAlertAction(title: "예매율", style: .default) { (_) in
+        let reservationRate = UIAlertAction(title: OrderType.rate.description, style: .default) { (_) in
             self.configure(with: 0)
         }
-        let curation = UIAlertAction(title: "큐레이션", style: .default) { (_) in
+        let curation = UIAlertAction(title: OrderType.curation.description, style: .default) { (_) in
             self.configure(with: 1)
         }
-        let date = UIAlertAction(title: "개봉일", style: .default) { (_) in
+        let date = UIAlertAction(title: OrderType.date.description, style: .default) { (_) in
             self.configure(with: 2)
         }
         
@@ -95,12 +69,12 @@ class CollectionViewController: UIViewController {
 
 extension CollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies?.count ?? 0
+        return cinema.movies?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        guard let items = movies?[indexPath.row] else { return UICollectionViewCell(frame: CGRect(origin: .zero, size: .zero))}
+        guard let items = cinema.movies?[indexPath.row] else { return UICollectionViewCell(frame: CGRect(origin: .zero, size: .zero))}
         cell.configure(from: items)
         return cell
     }
@@ -109,8 +83,21 @@ extension CollectionViewController: UICollectionViewDataSource {
 extension CollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        detailVC.id = self.movies?[indexPath.row].id
+        detailVC.id = cinema.movies?[indexPath.row].id
         self.navigationController?.pushViewController(detailVC, animated: true)
 
+    }
+}
+
+extension CollectionViewController {
+    private func configureObservers() {
+        let key = Notification.Name(rawValue: "updateItem")
+        NotificationCenter.default.addObserver(self, selector: #selector(updateItems), name: key, object: nil)
+    }
+    
+    @objc private func updateItems() {
+        DispatchQueue.main.async {
+            self.collectionview.reloadData()
+        }
     }
 }
