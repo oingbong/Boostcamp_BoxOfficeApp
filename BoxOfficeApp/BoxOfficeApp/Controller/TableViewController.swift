@@ -37,7 +37,7 @@ class TableViewController: UIViewController {
     }
     
     private func configure(with element: Int) {
-        cinema.parse(with: element)
+        cinema.parse(with: element, viewController: self)
         configureTitle(from: element)
     }
     

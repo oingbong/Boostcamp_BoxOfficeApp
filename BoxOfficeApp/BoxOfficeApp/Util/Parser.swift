@@ -6,15 +6,35 @@
 //  Copyright © 2018 oingbong. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Parser {
-    static func jsonUrl(with value: String, type: URLType, handler: @escaping (Data?) -> Void) {
+    enum URLType: CustomStringConvertible {
+        case orderType
+        case id
+        case comment
+        
+        var description: String {
+            let url = "http://connect-boxoffice.run.goorm.io/"
+            switch self {
+            case .orderType:
+                return String("\(url)movies?order_type=")
+            case .id:
+                return String("\(url)movie?id=")
+            case .comment:
+                return String("\(url)comments?movie_id=")
+            }
+        }
+    }
+    
+    static func jsonUrl(with value: String, type: URLType, vc: UIViewController, handler: @escaping (Data?) -> Void) {
+        vc.displaySpinner(view: vc.view)
         // 1. URL 객체 정의 - else 일 때 사용자에게 알람 (선택사항)
         guard let url = URL(string: "\(type.description)\(value)") else { return }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil { return }
             handler(data)
+            vc.removeSpinner(view: vc.view)
         }
         task.resume()
     }
@@ -26,24 +46,6 @@ struct Parser {
             return items
         } catch {
             return nil
-        }
-    }
-}
-
-enum URLType: CustomStringConvertible {
-    case orderType
-    case id
-    case comment
-    
-    var description: String {
-        let url = "http://connect-boxoffice.run.goorm.io/"
-        switch self {
-        case .orderType:
-            return String("\(url)movies?order_type=")
-        case .id:
-            return String("\(url)movie?id=")
-        case .comment:
-            return String("\(url)comments?movie_id=")
         }
     }
 }

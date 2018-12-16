@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     
     private func configure() {
         guard let movieId = id else { return }
-        cinema.parseDetail(with: movieId)
+        cinema.parseDetail(with: movieId, viewController: self)
     }
 }
 

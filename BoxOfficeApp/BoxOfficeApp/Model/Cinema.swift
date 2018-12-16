@@ -6,7 +6,7 @@
 //  Copyright © 2018 oingbong. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Cinema {
     static let shared = Cinema()
@@ -23,8 +23,8 @@ class Cinema {
         return movieEvaluations?.count ?? 0
     }
     
-    func parse(with orderType: Int) {
-        Parser.jsonUrl(with: String(orderType), type: .orderType) { (items) in
+    func parse(with orderType: Int, viewController: UIViewController) {
+        Parser.jsonUrl(with: String(orderType), type: .orderType, vc: viewController) { (items) in
             guard let movieItem: Movies = Parser.decode(from: items) else { return }
             self.movies = movieItem
             let key = Notification.Name("updateItem")
@@ -32,16 +32,16 @@ class Cinema {
         }
     }
     
-    func parseDetail(with movieId: String) {
+    func parseDetail(with movieId: String, viewController: UIViewController) {
         let key = Notification.Name("updateItemDetail")
         
-        Parser.jsonUrl(with: movieId, type: .id) { (item) in
+        Parser.jsonUrl(with: movieId, type: .id, vc: viewController ) { (item) in
             guard let movieItem: Movie = Parser.decode(from: item) else { return }
             self.selectedMovie = movieItem
             NotificationCenter.default.post(name: key, object: nil)
         }
         
-        Parser.jsonUrl(with: movieId, type: .comment) { (item) in
+        Parser.jsonUrl(with: movieId, type: .comment, vc: viewController) { (item) in
             guard let movieEvaluations: MovieEvaluations = Parser.decode(from: item) else { return }
             self.movieEvaluations = movieEvaluations
             NotificationCenter.default.post(name: key, object: nil)
