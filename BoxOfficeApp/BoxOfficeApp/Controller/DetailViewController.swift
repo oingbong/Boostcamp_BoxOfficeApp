@@ -12,6 +12,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     var id: String? // from Table / Collection View (not private)
     private var cinema = Cinema.shared
+    let anotherCellCount = 3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cinema.movieEvaluationsCount + 3
+        return cinema.movieEvaluationsCount + anotherCellCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,7 +52,7 @@ extension DetailViewController: UITableViewDataSource {
             }
         default:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell {
-                guard let items = cinema.evaluationsSubscript(index: indexPath.row - 3) else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
+                guard let items = cinema.evaluationsSubscript(index: indexPath.row - anotherCellCount) else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
                 cell.configure(from: items)
                 return cell
             }
