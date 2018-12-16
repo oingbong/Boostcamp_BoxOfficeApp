@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionViewController: UIViewController {
+class CollectionViewController: UIViewController, Watchable {
     @IBOutlet weak var collectionview: UICollectionView!
     private var cinema = Cinema.shared
     private let refreshControl = UIRefreshControl()
@@ -31,20 +31,20 @@ class CollectionViewController: UIViewController {
         }
     }
     
-    private func appendButtonItem() {
+    func appendButtonItem() {
         guard let image = UIImage(named: "ic_settings") else { return }
         let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sortedAlert))
         buttonItem.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItem = buttonItem
     }
     
-    private func configure(with element: Int) {
+    func configure(with element: Int) {
         self.displaySpinner(view: self.view)
         cinema.parse(with: element, viewController: self)
         configureTitle(from: element)
     }
     
-    private func configureTitle(from element: Int) {
+    func configureTitle(from element: Int) {
         guard let sort = SortName(rawValue: element) else { return }
         self.navigationItem.title = sort.description
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
@@ -80,7 +80,7 @@ extension CollectionViewController: UICollectionViewDelegate {
 }
 
 extension CollectionViewController {
-    private func configureObservers() {
+    func configureObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateItems), name: NotificationKey.updateItem, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sorted(_:)), name: NotificationKey.sorted, object: nil)
     }

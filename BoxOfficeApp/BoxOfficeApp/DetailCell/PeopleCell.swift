@@ -16,17 +16,6 @@ class PeopleCell: UITableViewCell {
     @IBOutlet weak var actorTextLabel: UILabel!
     let terms = MovieTerms()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
     func configure(from movie: Movie) {
         guard let director = movie.director else { return }
         guard let actor = movie.actor else { return }

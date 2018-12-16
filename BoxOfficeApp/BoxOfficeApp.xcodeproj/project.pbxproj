@@ -35,6 +35,7 @@
 		47EDEA2A21C6410000D08FC9 /* UIAlertController+Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA2921C6410000D08FC9 /* UIAlertController+Movie.swift */; };
 		47EDEA2E21C6605F00D08FC9 /* UIViewController+Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA2D21C6605F00D08FC9 /* UIViewController+Indicator.swift */; };
 		47EDEA3121C68B9500D08FC9 /* NotificationKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA3021C68B9500D08FC9 /* NotificationKey.swift */; };
+		47EDEA3321C68FA800D08FC9 /* Watchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EDEA3221C68FA800D08FC9 /* Watchable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		47EDEA2921C6410000D08FC9 /* UIAlertController+Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Movie.swift"; sourceTree = "<group>"; };
 		47EDEA2D21C6605F00D08FC9 /* UIViewController+Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Indicator.swift"; sourceTree = "<group>"; };
 		47EDEA3021C68B9500D08FC9 /* NotificationKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationKey.swift; sourceTree = "<group>"; };
+		47EDEA3221C68FA800D08FC9 /* Watchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Watchable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 		4784742021B7879A0066E39E /* BoxOfficeApp */ = {
 			isa = PBXGroup;
 			children = (
+				47DE41FE21C690400060ED6E /* Protocol */,
 				4705174E21C4C7310070C5B4 /* Controller */,
 				4705174C21C4C6F30070C5B4 /* Cell */,
 				4705174D21C4C7150070C5B4 /* DetailCell */,
@@ -225,6 +228,14 @@
 				47EDEA2121C61F8A00D08FC9 /* Cinema.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		47DE41FE21C690400060ED6E /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				47EDEA3221C68FA800D08FC9 /* Watchable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		47EDEA2F21C6608200D08FC9 /* Extension */ = {
@@ -388,6 +399,7 @@
 				4705175321C50CAD0070C5B4 /* MovieEvaluations.swift in Sources */,
 				47EDEA2421C6327400D08FC9 /* OrderType.swift in Sources */,
 				4784742421B7879A0066E39E /* TableViewController.swift in Sources */,
+				47EDEA3321C68FA800D08FC9 /* Watchable.swift in Sources */,
 				4784742221B7879A0066E39E /* AppDelegate.swift in Sources */,
 				47B88AEA21BB97AB00963FBC /* MovieEvaluation.swift in Sources */,
 			);
