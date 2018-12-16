@@ -12,8 +12,10 @@ class Cinema {
     static let shared = Cinema()
     
     var movies: Movies?
+    var movieEvaluations: MovieEvaluations?
+    var selectedMovie: Movie?
     
-    public func parse(with orderType: Int) {
+    func parse(with orderType: Int) {
         Parser.jsonUrl(with: String(orderType), type: .orderType) { (items) in
             guard let movieItem: Movies = Parser.decode(from: items) else { return }
             self.movies = movieItem
@@ -22,7 +24,23 @@ class Cinema {
         }
     }
     
-    public func orderType() -> Int {
+    func parseDetail(with movieId: String) {
+        let key = Notification.Name("updateItemDetail")
+        
+        Parser.jsonUrl(with: movieId, type: .id) { (item) in
+            guard let movieItem: Movie = Parser.decode(from: item) else { return }
+            self.selectedMovie = movieItem
+            NotificationCenter.default.post(name: key, object: nil)
+        }
+        
+        Parser.jsonUrl(with: movieId, type: .comment) { (item) in
+            guard let movieEvaluations: MovieEvaluations = Parser.decode(from: item) else { return }
+            self.movieEvaluations = movieEvaluations
+            NotificationCenter.default.post(name: key, object: nil)
+        }
+    }
+    
+    func orderType() -> Int {
         return self.movies?.orderType ?? -1
     }
 }

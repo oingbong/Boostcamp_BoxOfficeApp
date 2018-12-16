@@ -10,43 +10,29 @@ import UIKit
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
-    var id: String?
-    var movie: Movie?
-    var movieEvaluations: MovieEvaluations?
+    var id: String? // from Table / Collection View
+    var cinema = Cinema.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureObservers()
         tableview.dataSource = self
         configure()
     }
     
     private func configure() {
         guard let movieId = id else { return }
-        Parser.jsonUrl(with: movieId, type: .id) { (item) in
-            guard let movieItem: Movie = Parser.decode(from: item) else { return }
-            self.movie = movieItem
-            DispatchQueue.main.async {
-                self.tableview.reloadData()
-            }
-        }
-        
-        Parser.jsonUrl(with: movieId, type: .comment) { (item) in
-            guard let movieEvaluations: MovieEvaluations = Parser.decode(from: item) else { return }
-            self.movieEvaluations = movieEvaluations
-            DispatchQueue.main.async {
-                self.tableview.reloadData()
-            }
-        }
+        cinema.parseDetail(with: movieId)
     }
 }
 
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieEvaluations?.count ?? 0 + 3
+        return cinema.movieEvaluations?.count ?? 0 + 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let movie = movie else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero)) }
+        guard let movie = cinema.selectedMovie else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero)) }
         switch indexPath.row {
         case 0:
             if let cell = tableview.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as? InfoCell {
@@ -65,12 +51,24 @@ extension DetailViewController: UITableViewDataSource {
             }
         default:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell {
-                guard let items = movieEvaluations?[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
+                guard let items = cinema.movieEvaluations?[indexPath.row] else { return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))}
                 cell.configure(from: items)
                 return cell
             }
         }
-        
         return UITableViewCell(frame: CGRect(origin: .zero, size: .zero))
+    }
+}
+
+extension DetailViewController {
+    private func configureObservers() {
+        let key = Notification.Name("updateItemDetail")
+        NotificationCenter.default.addObserver(self, selector: #selector(updateItemDetail), name: key, object: nil)
+    }
+    
+    @objc private func updateItemDetail() {
+        DispatchQueue.main.async {
+            self.tableview.reloadData()
+        }
     }
 }
