@@ -23,8 +23,7 @@ class CollectionViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let title = self.navigationItem.title ?? ""
         let selectedOrderType = OrderType.selected(with: title)
-        // 타이틀값 없거나 모델이 가진 타입과 다르다면 변경 or 아니면 그대로 둡니다.
-        if selectedOrderType < 0 || cinema.orderType() != selectedOrderType {
+        if cinema.orderType() != selectedOrderType {
             configure(with: cinema.orderType())
         }
     }

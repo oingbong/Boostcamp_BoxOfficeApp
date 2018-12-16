@@ -18,14 +18,13 @@ class TableViewController: UIViewController {
         tableview.dataSource = self
         tableview.delegate = self
         appendButtonItem()
-        configure(with: 0) // 1
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        guard let title = self.navigationItem.title else { return }
+        let title = self.navigationItem.title ?? OrderType.rate.description
         let selectedOrderType = OrderType.selected(with: title)
-        if cinema.orderType() != selectedOrderType {
-            configure(with: cinema.orderType())
+        if cinema.orderType() == -1 {
+            configure(with: selectedOrderType)
         }
     }
     
