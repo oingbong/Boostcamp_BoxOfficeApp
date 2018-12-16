@@ -31,7 +31,7 @@ class CollectionViewController: UIViewController {
     
     private func appendButtonItem() {
         guard let image = UIImage(named: "ic_settings") else { return }
-        let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sorted))
+        let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sortedAlert))
         buttonItem.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItem = buttonItem
     }
@@ -48,21 +48,8 @@ class CollectionViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
-    @objc private func sorted() {
-        let alert = UIAlertController(title: "정렬방식 선택", message: "영화를 어떤 순서로 정렬할까요?", preferredStyle: .actionSheet)
-        let reservationRate = UIAlertAction(title: OrderType.rate.description, style: .default) { (_) in
-            self.configure(with: 0)
-        }
-        let curation = UIAlertAction(title: OrderType.curation.description, style: .default) { (_) in
-            self.configure(with: 1)
-        }
-        let date = UIAlertAction(title: OrderType.date.description, style: .default) { (_) in
-            self.configure(with: 2)
-        }
-        
-        alert.addAction(reservationRate)
-        alert.addAction(curation)
-        alert.addAction(date)
+    @objc private func sortedAlert() {
+        let alert = UIAlertController.sorted()
         self.present(alert, animated: true, completion: nil)
     }
 }
@@ -91,13 +78,20 @@ extension CollectionViewController: UICollectionViewDelegate {
 
 extension CollectionViewController {
     private func configureObservers() {
-        let key = Notification.Name(rawValue: "updateItem")
-        NotificationCenter.default.addObserver(self, selector: #selector(updateItems), name: key, object: nil)
+        let updateItemKey = Notification.Name(rawValue: "updateItem")
+        NotificationCenter.default.addObserver(self, selector: #selector(updateItems), name: updateItemKey, object: nil)
+        let sortedKey = Notification.Name(rawValue: "sorted")
+        NotificationCenter.default.addObserver(self, selector: #selector(sorted(_:)), name: sortedKey, object: nil)
     }
     
     @objc private func updateItems() {
         DispatchQueue.main.async {
             self.collectionview.reloadData()
         }
+    }
+    
+    @objc private func sorted(_ notification: Notification) {
+        guard let value = notification.userInfo?["value"] as? Int else { return }
+        configure(with: value)
     }
 }
