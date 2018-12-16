@@ -16,9 +16,17 @@ class CommentCell: UITableViewCell {
     
     func configure(from movieEvaluation: MovieEvaluation) {
         writerLabel.text = movieEvaluation.writer
-        timeStampLabel.text = String(movieEvaluation.timestamp)
+        timeStampLabel.text = format(with: movieEvaluation.timestamp)
         contentsLabel.text = movieEvaluation.contents
         let star = movieEvaluation.rating
         starStackView.configure(count: Int(star))
+    }
+    
+    private func format(with timestamp: Double) -> String {
+        let date = Date(timeIntervalSince1970: timestamp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let result = dateFormatter.string(from: date)
+        return result
     }
 }
