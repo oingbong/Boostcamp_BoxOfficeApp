@@ -62,13 +62,21 @@ extension DetailViewController: UITableViewDataSource {
 
 extension DetailViewController {
     private func configureObservers() {
-        let key = Notification.Name("updateItemDetail")
-        NotificationCenter.default.addObserver(self, selector: #selector(updateItemDetail), name: key, object: nil)
+        let updateKey = Notification.Name("updateItemDetail")
+        NotificationCenter.default.addObserver(self, selector: #selector(updateItemDetail), name: updateKey, object: nil)
+        let hiddenKey = Notification.Name("isHidden")
+        NotificationCenter.default.addObserver(self, selector: #selector(isHidden(_:)), name: hiddenKey, object: nil)
     }
     
     @objc private func updateItemDetail() {
         DispatchQueue.main.async {
             self.tableview.reloadData()
         }
+    }
+    
+    @objc private func isHidden(_ notification: Notification) {
+        guard let isHidden = notification.userInfo?["isHidden"] as? Bool else { return }
+        self.navigationController?.isNavigationBarHidden = isHidden
+        self.tabBarController?.tabBar.isHidden = isHidden
     }
 }
