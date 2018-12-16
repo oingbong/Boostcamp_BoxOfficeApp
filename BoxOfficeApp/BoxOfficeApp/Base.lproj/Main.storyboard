@@ -714,4 +714,5 @@
         <image name="ic_table" width="24" height="24"/>
         <image name="ic_user_loading" width="36" height="36"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

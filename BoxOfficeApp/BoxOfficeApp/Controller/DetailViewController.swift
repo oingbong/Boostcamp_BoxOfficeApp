@@ -70,7 +70,13 @@ extension DetailViewController {
     @objc private func updateItemDetail() {
         DispatchQueue.main.async {
             self.tableview.reloadData()
+            self.configureTitle()
         }
+    }
+    
+    private func configureTitle() {
+        guard let title = cinema.selectedMovie?.title else { return }
+        self.navigationItem.title = title
     }
     
     @objc private func isHidden(_ notification: Notification) {
