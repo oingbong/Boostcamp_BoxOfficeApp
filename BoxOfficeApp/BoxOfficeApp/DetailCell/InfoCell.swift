@@ -31,31 +31,7 @@ class InfoCell: UITableViewCell {
     func configure(from movie: Movie) {
         appendPropertyInfo(with: movie)
         appendPropertySubInfo(with: movie)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
-        posterImage.isUserInteractionEnabled = true
-        posterImage.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
-        guard let imageView = gesture.view as? UIImageView else { return }
-        let newImageView = UIImageView(image: imageView.image)
-        newImageView.frame = UIScreen.main.bounds
-        newImageView.backgroundColor = .black
-        newImageView.contentMode = .scaleAspectFit
-        newImageView.isUserInteractionEnabled = true
-        // for dismiss
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(_:)))
-        newImageView.addGestureRecognizer(tapGesture)
-        superview?.addSubview(newImageView)
-        let key = Notification.Name(rawValue: "isHidden")
-        NotificationCenter.default.post(name: key, object: nil, userInfo: ["isHidden" : true])
-    }
-    
-    @objc func dismissFullscreenImage(_ gesture: UITapGestureRecognizer) {
-        gesture.view?.removeFromSuperview()
-        let key = Notification.Name(rawValue: "isHidden")
-        NotificationCenter.default.post(name: key, object: nil, userInfo: ["isHidden" : false])
+        appendTapGesture()
     }
     
     private func appendPropertyInfo(with movie: Movie) {
@@ -89,5 +65,34 @@ class InfoCell: UITableViewCell {
         formatter.numberStyle = .decimal
         let result = formatter.string(from: NSNumber(value: audience))
         return result
+    }
+}
+
+extension InfoCell {
+    private func appendTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
+        posterImage.isUserInteractionEnabled = true
+        posterImage.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
+        guard let imageView = gesture.view as? UIImageView else { return }
+        let newImageView = UIImageView(image: imageView.image)
+        newImageView.frame = UIScreen.main.bounds
+        newImageView.backgroundColor = .black
+        newImageView.contentMode = .scaleAspectFit
+        newImageView.isUserInteractionEnabled = true
+        // for dismiss
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage(_:)))
+        newImageView.addGestureRecognizer(tapGesture)
+        superview?.addSubview(newImageView)
+        let key = Notification.Name(rawValue: "isHidden")
+        NotificationCenter.default.post(name: key, object: nil, userInfo: ["isHidden" : true])
+    }
+    
+    @objc func dismissFullscreenImage(_ gesture: UITapGestureRecognizer) {
+        gesture.view?.removeFromSuperview()
+        let key = Notification.Name(rawValue: "isHidden")
+        NotificationCenter.default.post(name: key, object: nil, userInfo: ["isHidden" : false])
     }
 }
