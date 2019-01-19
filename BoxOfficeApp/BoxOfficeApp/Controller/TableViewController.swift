@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UIViewController, Watchable {
+class TableViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     private var cinema = Cinema.shared
     private let refreshControl = UIRefreshControl()
@@ -29,31 +29,6 @@ class TableViewController: UIViewController, Watchable {
         if cinema.orderType() == -1 {
             configure(with: selectedOrderType)
         }
-    }
-    
-    func appendButtonItem() {
-        guard let image = UIImage(named: "ic_settings") else { return }
-        let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sortedAlert))
-        buttonItem.tintColor = UIColor.white
-        self.navigationItem.rightBarButtonItem = buttonItem
-    }
-    
-    func configure(with element: Int) {
-        self.displaySpinner(view: self.view)
-        cinema.parse(with: element, viewController: self)
-        configureTitle(from: element)
-    }
-    
-    func configureTitle(from element: Int) {
-        guard let sort = OrderType(rawValue: element) else { return }
-        self.navigationItem.title = sort.description
-        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
-    }
-    
-    @objc private func sortedAlert() {
-        let alert = UIAlertController.sorted()
-        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -106,5 +81,32 @@ extension TableViewController {
         let selectedOrderType = OrderType.selected(with: title)
         cinema.parse(with: selectedOrderType, viewController: self)
         refreshControl.endRefreshing()
+    }
+}
+
+extension TableViewController: Watchable {
+    func appendButtonItem() {
+        guard let image = UIImage(named: "ic_settings") else { return }
+        let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sortedAlert))
+        buttonItem.tintColor = UIColor.white
+        self.navigationItem.rightBarButtonItem = buttonItem
+    }
+    
+    func configure(with element: Int) {
+        self.displaySpinner(view: self.view)
+        cinema.parse(with: element, viewController: self)
+        configureTitle(from: element)
+    }
+    
+    func configureTitle(from element: Int) {
+        guard let sort = OrderType(rawValue: element) else { return }
+        self.navigationItem.title = sort.description
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
+    @objc private func sortedAlert() {
+        let alert = UIAlertController.sorted()
+        self.present(alert, animated: true, completion: nil)
     }
 }
