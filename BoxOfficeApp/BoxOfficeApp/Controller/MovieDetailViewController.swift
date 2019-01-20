@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class MovieDetailViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     var id: String? // from Table / Collection View (not private)
     private var cinema = Cinema.shared
@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
     }
 }
 
-extension DetailViewController: UITableViewDataSource {
+extension MovieDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cinema.movieEvaluationsCount + anotherCellCount
     }
@@ -61,7 +61,7 @@ extension DetailViewController: UITableViewDataSource {
     }
 }
 
-extension DetailViewController {
+extension MovieDetailViewController {
     private func configureObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateItemDetail), name: NotificationKey.updateItemDetail, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(isHidden(_:)), name: NotificationKey.isHidden, object: nil)

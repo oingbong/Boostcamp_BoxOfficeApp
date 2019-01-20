@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UIViewController {
+class MoviesTableViewController: UIViewController {
     @IBOutlet weak var tableview: UITableView!
     private var cinema = Cinema.shared
     private let refreshControl = UIRefreshControl()
@@ -32,7 +32,7 @@ class TableViewController: UIViewController {
     }
 }
 
-extension TableViewController: UITableViewDataSource {
+extension MoviesTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cinema.moviesCount
     }
@@ -45,9 +45,9 @@ extension TableViewController: UITableViewDataSource {
     }
 }
 
-extension TableViewController: UITableViewDelegate {
+extension MoviesTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! MovieDetailViewController
         detailVC.id = cinema[indexPath.row]?.id
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
@@ -57,7 +57,7 @@ extension TableViewController: UITableViewDelegate {
     }
 }
 
-extension TableViewController {
+extension MoviesTableViewController {
     func configureObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateItems), name: NotificationKey.updateItem, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sorted(_:)), name: NotificationKey.sorted, object: nil)
@@ -75,7 +75,7 @@ extension TableViewController {
     }
 }
 
-extension TableViewController {
+extension MoviesTableViewController {
     @objc private func refreshData(_ sender: Any) {
         let title = self.navigationItem.title ?? OrderType.rate.description
         let selectedOrderType = OrderType.selected(with: title)
@@ -84,7 +84,7 @@ extension TableViewController {
     }
 }
 
-extension TableViewController: Watchable {
+extension MoviesTableViewController: Watchable {
     func appendButtonItem() {
         guard let image = UIImage(named: "ic_settings") else { return }
         let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sortedAlert))
