@@ -33,7 +33,10 @@ struct Parser {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if error != nil { return }
             handler(data)
-            vc.removeSpinner(view: vc.view)
+            
+            DispatchQueue.main.async {
+                vc.removeSpinner(view: vc.view)
+            }
         }
         task.resume()
     }
