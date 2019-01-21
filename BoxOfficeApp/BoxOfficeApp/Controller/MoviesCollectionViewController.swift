@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CollectionViewController: UIViewController {
+class MoviesCollectionViewController: UIViewController {
     @IBOutlet weak var collectionview: UICollectionView!
     private var cinema = Cinema.shared
     private let refreshControl = UIRefreshControl()
@@ -32,7 +32,7 @@ class CollectionViewController: UIViewController {
     }
 }
 
-extension CollectionViewController: UICollectionViewDataSource {
+extension MoviesCollectionViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cinema.moviesCount
     }
@@ -45,16 +45,16 @@ extension CollectionViewController: UICollectionViewDataSource {
     }
 }
 
-extension CollectionViewController: UICollectionViewDelegate {
+extension MoviesCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        let detailVC = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! MovieDetailViewController
         detailVC.id = cinema[indexPath.row]?.id
         self.navigationController?.pushViewController(detailVC, animated: true)
 
     }
 }
 
-extension CollectionViewController {
+extension MoviesCollectionViewController {
     func configureObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateItems), name: NotificationKey.updateItem, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(sorted(_:)), name: NotificationKey.sorted, object: nil)
@@ -72,7 +72,7 @@ extension CollectionViewController {
     }
 }
 
-extension CollectionViewController {
+extension MoviesCollectionViewController {
     @objc private func refreshData(_ sender: Any) {
         let title = self.navigationItem.title ?? OrderType.rate.description
         let selectedOrderType = OrderType.selected(with: title)
@@ -81,7 +81,7 @@ extension CollectionViewController {
     }
 }
 
-extension CollectionViewController: Watchable {
+extension MoviesCollectionViewController: Watchable {
     func appendButtonItem() {
         guard let image = UIImage(named: "ic_settings") else { return }
         let buttonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(sortedAlert))

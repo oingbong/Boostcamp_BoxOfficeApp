@@ -16,17 +16,13 @@ extension UIViewController {
         indicator.startAnimating()
         indicator.center = spinnerView.center
         
-        DispatchQueue.main.async {
-            spinnerView.addSubview(indicator)
-            view.addSubview(spinnerView)
-        }
+        spinnerView.addSubview(indicator)
+        view.addSubview(spinnerView)
     }
     
     func removeSpinner(view: UIView) {
-        DispatchQueue.main.async {
-            guard view.subviews.count >= 2 else { return }
-            let subview = view.subviews[view.subviews.count - 1]
-            subview.removeFromSuperview()
-        }
+        guard view.subviews.count >= 2 else { return }
+        let subview = view.subviews[view.subviews.count - 1]
+        subview.removeFromSuperview()
     }
 }
